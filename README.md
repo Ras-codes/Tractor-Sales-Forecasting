@@ -1,5 +1,5 @@
 <div align="center">
-  <h1># Tractor Sales Forecasting</h1>
+  <h1>Tractor Sales Forecasting</h1>
 </div>
 
 
