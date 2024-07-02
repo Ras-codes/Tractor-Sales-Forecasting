@@ -102,75 +102,73 @@ pd.pivot_table(data = sales, index = 'month', columns = 'year', values = 'No_Tra
 
 ## 3. Seasonal Decomposition Visualisation
 
-![image](https://github.com/Ras-codes/Tractor-Sales-Forecasting/assets/164164852/b4176a5b-eab0-45d7-87b1-1124f7c02556)![image](https://github.com/Ras-codes/Tractor-Sales-Forecasting/assets/164164852/d517244e-9298-4b2f-84f0-b589f07a5583)
+![image](https://github.com/Ras-codes/Tractor-Sales-Forecasting/assets/164164852/b4176a5b-eab0-45d7-87b1-1124f7c02556)
 - Observed plot: Represents the actual raw data points of a time series, showing the original values observed over time without any decomposition into trend, seasonal, or residual components.
 - Trend Plot: Shows the trend component extracted from the time series data, which represents the long-term behavior or direction of the data over time.
 - Seasonal Plot: Displays the seasonal component, which represents the periodic patterns or fluctuations that recur at fixed intervals within the data.
 - Residual Plot: Illustrates the residual component, capturing the random variations or noise left after removing the trend and seasonal components.
 
 
+# ------------------------------------------------------------------------------
 
 
+# STL - Seasonality Trend Loess (Locally Estimated Regression)
 
 
+- Observed: The original time series data.
+- Trend: The long-term progression of the series (e.g., increasing, decreasing).
+- Seasonal: The repeating short-term cycle (e.g., monthly or quarterly patterns).
+- Residual: The remaining part of the series after removing the trend and seasonal components, often referred to as "irregular" or "noise".
+````
+decomposed = pd.concat([decom.observed, decom.trend, decom.seasonal, decom.resid], axis=1).head(24)
+decomposed.columns = ['Actual', 'Trend', 'Seasonality', 'Irregular']
+decom = decompose(ts)
+decom.plot()
+````
+![image](https://github.com/Ras-codes/Tractor-Sales-Forecasting/assets/164164852/e5b06b30-22f3-44dd-be93-b75ec03c90b6)
 
+- The residuals represent random noise, indicating that there are no additional underlying patterns or structures that the model failed to capture.
+- The decomposition process has successfully extracted the trend and seasonal components from the observed time series.
+- Since the trend and seasonal components are well captured, these components can be used to make reliable future forecasts.
 
 
+# ------------------------------------------------------------------------------
 
 
+# Train Test Split
 
+- Extract the target time series data (sales.No_Tractors_Sold).
+- Create the training set by selecting data up to a specific date (2014-06-01).
+- Create the test set by selecting data from a specific date onward (2014-07-01).
 
 
+# ------------------------------------------------------------------------------
 
 
+# Forecasting using STL Forecast()
 
+- A 6-month forecast is generated using the drift method, taking into account the seasonal component of the decomposed data.
+- The forecasted values are stored in a DataFrame, with the column renamed for clarity.
+- The forecasted values are converted to a DataFrame for further analysis and comparison with the actual test set values.
+- Calculating the absolute difference between the actual and forecasted values for each time point in the test set.
+- The Absolute Percentage Error for each forecasted value is calculated, measuring the error as a percentage of the actual value.
+- The average of the Absolute Percentage Errors is computed to evaluate the overall accuracy of the forecast on the test set.
 
+#### Absolute Percentage Error (APE):
+- The Absolute Percentage Error for each forecasted value is calculated, measuring the error as a percentage of the actual value.
 
+#### Mean Absolute Percentage Error (MAPE) for Test Data:
+-The average of the Absolute Percentage Errors is computed to evaluate the overall accuracy of the forecast on the test set.
 
+![image](https://github.com/Ras-codes/Tractor-Sales-Forecasting/assets/164164852/812edfcb-02cf-4660-ab09-77481dccc8a8)
 
 
+# ------------------------------------------------------------------------------
 
 
+# MAPE = Mean Absolute Percentage Error
 
+#### Mean Absolute Percentage Error (MAPE) for Training Data:
+-The MAPE is also calculated for the training data, comparing the actual values to the sum of the trend and seasonal components from the decomposition. This helps assess how well the model fits the training data.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+![image](https://github.com/Ras-codes/Tractor-Sales-Forecasting/assets/164164852/6c007a7d-0674-41e2-a533-6e52c5da75d1)
