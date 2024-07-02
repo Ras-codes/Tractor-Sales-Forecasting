@@ -154,7 +154,7 @@ decom.plot()
 - The Absolute Percentage Error for each forecasted value is calculated, measuring the error as a percentage of the actual value.
 
 #### Mean Absolute Percentage Error (MAPE) for Test Data:
--The average of the Absolute Percentage Errors is computed to evaluate the overall accuracy of the forecast on the test set.
+- The average of the Absolute Percentage Errors is computed to evaluate the overall accuracy of the forecast on the test set.
 
 ![image](https://github.com/Ras-codes/Tractor-Sales-Forecasting/assets/164164852/812edfcb-02cf-4660-ab09-77481dccc8a8)
 
