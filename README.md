@@ -115,10 +115,6 @@ pd.pivot_table(data = sales, index = 'month', columns = 'year', values = 'No_Tra
 # STL - Seasonality Trend Loess (Locally Estimated Regression)
 
 
-- Observed: The original time series data.
-- Trend: The long-term progression of the series (e.g., increasing, decreasing).
-- Seasonal: The repeating short-term cycle (e.g., monthly or quarterly patterns).
-- Residual: The remaining part of the series after removing the trend and seasonal components, often referred to as "irregular" or "noise".
 ````
 decomposed = pd.concat([decom.observed, decom.trend, decom.seasonal, decom.resid], axis=1).head(24)
 decomposed.columns = ['Actual', 'Trend', 'Seasonality', 'Irregular']
