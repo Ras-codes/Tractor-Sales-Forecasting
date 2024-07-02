@@ -172,3 +172,5 @@ decom.plot()
 -The MAPE is also calculated for the training data, comparing the actual values to the sum of the trend and seasonal components from the decomposition. This helps assess how well the model fits the training data.
 
 ![image](https://github.com/Ras-codes/Tractor-Sales-Forecasting/assets/164164852/6c007a7d-0674-41e2-a533-6e52c5da75d1)
+
+The MAPE of 8.13% suggests that the tractor sales forecasting model performs well, providing reasonably accurate predictions that can be relied upon for practical purposes.
